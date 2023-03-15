@@ -20,6 +20,8 @@
             - curl
             - nginx
             - docker.io
+            - nodejs
+            - npm
         state: present
 
 - name: setup webserver
