@@ -20,6 +20,8 @@
             - curl
             - nginx
             - docker.io
+            - nodejs
+            - npm
         state: latest
 
 - name: setup webserver
@@ -40,8 +42,6 @@
 
     - apt:
         name:
-            - nodejs
-            - npm
             - inotify-tools
         state: latest
     - name: Install PM2
