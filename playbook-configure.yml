@@ -20,9 +20,7 @@
             - curl
             - nginx
             - docker.io
-            - nodejs
-            - npm
-        state: present
+        state: latest
 
 - name: setup webserver
   become: true
@@ -39,11 +37,22 @@
         user: deploy
         state: present
         key: "{{ lookup('file', './sshkey.pub') }}"
+
+    - apt:
+        name:
+            - nodejs
+            - npm
+            - inotify-tools
+        state: latest
+    - name: Install PM2
+      npm:
+        name: pm2
+        global: yes
 - name: install java
   become: true
   hosts: jenkins
   vars:
-    jenkins_domain_name: www.personalverwaltungssystem.com
+    jenkins_domain_name: techstarter.ddns.net
   tasks:
     - name: Download Long Term Jenkins release
       get_url:
